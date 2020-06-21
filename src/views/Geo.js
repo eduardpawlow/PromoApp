@@ -91,7 +91,7 @@ const Geo = ({ id, user, access_token }) => {
 
       // console.dir(shops.data);
       // setShopsArray(shopsArray.concat(newArray));
-      console.log(shopsArray);
+      // console.log(shopsArray);
 
       setShopsArray(shops.data);
     } catch (e) {
@@ -118,6 +118,18 @@ const Geo = ({ id, user, access_token }) => {
   const closeModal = () => {
     setActiveModal(null);
   };
+
+  async function addPromocode() {
+    try {
+      const response = await api.createPromocode({
+        vk_id: user.id,
+        promocode_id: currentShop.promocode.id,
+      });
+      console.log(response);
+
+      closeModal();
+    } catch (error) {}
+  }
 
   const modalheader = (
     <ModalPageHeader
@@ -216,6 +228,7 @@ const Geo = ({ id, user, access_token }) => {
               }}
               align="center"
               size="l"
+              onClick={addPromocode}
             >
               Добавить
             </Button>

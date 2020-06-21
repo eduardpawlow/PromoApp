@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from "react";
 import bridge from "@vkontakte/vk-bridge";
-import { Root, View, Panel, List, Cell } from "@vkontakte/vkui";
+import {
+  Root,
+  Epic,
+  Tabbar,
+  TabbarItem,
+  View,
+  Panel,
+  List,
+  Cell,
+} from "@vkontakte/vkui";
 import ScreenSpinner from "@vkontakte/vkui/dist/components/ScreenSpinner/ScreenSpinner";
 import "@vkontakte/vkui/dist/vkui.css";
+import Icon28UserCircleOutline from "@vkontakte/icons/dist/28/user_circle_outline";
+import Icon28CompassOutline from "@vkontakte/icons/dist/28/compass_outline";
 
 import Geo from "./views/Geo";
+import Profile from "./views/Profile";
 
 const App = () => {
   // const [appID, setAppID] = useState(7514365);
@@ -43,12 +55,26 @@ const App = () => {
     // getAuthToken();
   }, []);
 
-  // console.log(fetchedUser);
+  const changeView = (e) => {
+    setActiveView(e.currentTarget.dataset.to);
+  };
+
+  const tabbar = (
+    <Tabbar>
+      <TabbarItem onClick={changeView} data-to="geo">
+        <Icon28CompassOutline />
+      </TabbarItem>
+      <TabbarItem onClick={changeView} data-to="profile">
+        <Icon28UserCircleOutline />
+      </TabbarItem>
+    </Tabbar>
+  );
 
   return (
-    <Root activeView={activeView}>
+    <Epic activeStory={activeView} tabbar={tabbar}>
       <Geo id="geo" user={fetchedUser}></Geo>
-    </Root>
+      <Profile id="profile" user={fetchedUser}></Profile>
+    </Epic>
   );
 };
 
