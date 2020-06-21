@@ -7,7 +7,7 @@ import "@vkontakte/vkui/dist/vkui.css";
 import Geo from "./views/Geo";
 
 const App = () => {
-  const [appID, setAppID] = useState(7514365);
+  // const [appID, setAppID] = useState(7514365);
   const [accessToken, setAccessToken] = useState("");
   const [activeView, setActiveView] = useState("geo");
   const [fetchedUser, setUser] = useState(null);
@@ -28,35 +28,25 @@ const App = () => {
       setPopout(null);
     }
 
-    async function getAuthToken() {
-      console.log(1);
+    // async function getAuthToken() {
+    //   console.log(1);
 
-      const token = await bridge.send("VKWebAppGetAuthToken", {
-        app_id: appID,
-        scope: "friends",
-      });
+    //   const token = await bridge.send("VKWebAppGetAuthToken", {
+    //     app_id: appID,
+    //     scope: "friends",
+    //   });
 
-      setAccessToken(token);
-    }
+    //   setAccessToken(token);
+    // }
 
     fetchData();
-    getAuthToken();
+    // getAuthToken();
   }, []);
 
-  console.log(fetchedUser);
+  // console.log(fetchedUser);
 
   return (
     <Root activeView={activeView}>
-      {/* <View id="geo" activePanel={activePanel} popout={popout}>
-        <Home id="home" fetchedUser={fetchedUser} go={go} />
-        <Friends
-          id="friends"
-          go={go}
-          fetchedUser={fetchedUser}
-          access_token={accessToken.access_token}
-        />
-        <Geo id="geo" go={go} access_token={accessToken.access_token}></Geo>
-      </View> */}
       <Geo id="geo" user={fetchedUser}></Geo>
     </Root>
   );

@@ -26,8 +26,6 @@ import Icon24Done from "@vkontakte/icons/dist/24/done";
 import Icon24Add from "@vkontakte/icons/dist/24/add";
 import coupon from "../img/coupon.svg";
 
-import utils from "../utils";
-
 import api from "../api";
 
 const MapStyle = {
@@ -62,8 +60,6 @@ const Geo = ({ id, user, access_token }) => {
   const [currentShop, setCurrentShop] = useState(null);
   const [activeModal, setActiveModal] = useState(null);
   const [geoPointCenter, setGeoPointCenter] = useState({});
-  const [randomPoint, setRandomPoint] = useState(0.5);
-  const [interval, setGeoInterval] = useState(null);
 
   async function getCenter() {
     const result = await bridge.send("VKWebAppGetGeodata");
@@ -102,7 +98,6 @@ const Geo = ({ id, user, access_token }) => {
       console.dir(e);
     }
     console.log(`Ваша позиция: ${result.lat} ${result.long}`);
-    // setRandomPoint(Math.random());
   }
 
   useEffect(() => {
@@ -127,16 +122,6 @@ const Geo = ({ id, user, access_token }) => {
   const modalheader = (
     <ModalPageHeader
       style={modalHeaderStyle}
-      // left={
-      //   <Fragment>
-      //   //   {osName === ANDROID && (
-      //   //     <PanelHeaderButton onClick={closeModal}>
-      //   //       <Icon24Cancel />
-      //   //     </PanelHeaderButton>
-      //   //   )}
-
-      //   </Fragment>
-      // }
       right={
         <Fragment>
           {osName === ANDROID && (
@@ -206,7 +191,7 @@ const Geo = ({ id, user, access_token }) => {
                 textAlign: "center",
               }}
             >
-              {`Вот ваш купон, ${user.first_name} ${user.id}!`}
+              {`Вот ваша персональная акция, ${user.first_name}!`}
             </div>
           )}
           {currentShop && (
@@ -243,15 +228,7 @@ const Geo = ({ id, user, access_token }) => {
   return (
     <View id={id} activePanel={activePanel} modal={modal}>
       <Panel id="main">
-        <PanelHeader
-          left={
-            <PanelHeaderButton onClick={go} data-to="home">
-              {osName === IOS ? <Icon28ChevronBack /> : <Icon24Back />}
-            </PanelHeaderButton>
-          }
-        >
-          Геопозиция
-        </PanelHeader>
+        <PanelHeader>Найди свою скидку!</PanelHeader>
         <YMaps>
           {geoPointCenter.available && (
             <Map
@@ -269,12 +246,6 @@ const Geo = ({ id, user, access_token }) => {
                   onClick={() => selectCoupon(shop)}
                   key={shop.id}
                   geometry={[shop.location.lat, shop.location.long]}
-                  properties={
-                    {
-                      // iconContent: coupon,
-                      // balloonContent: `&lt;img src="${coupon}" /&gt;`,
-                    }
-                  }
                   options={options}
                 />
               ))}
