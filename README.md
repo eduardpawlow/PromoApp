@@ -20,14 +20,19 @@ https://github.com/eduardpawlow/PromoAppBack
 7) \Опционально\ Загружаем шаблонные данные: `python manage.py loaddata fixt.json`
 8) Запускаем локальный сервер разработки: `python manage.py runserver localhost:80` По умолчанию используется 8000 порт.
 9) С помощью ngrok-подобных решений создаем туннель.
-10) Добавляем сформированный url в файл  api/imdex.js на части фронта в констанут hostname
+10) Добавляем сформированный url в файл  api/index.js на части фронта в константу hostname
 
 # FRONTEND
+
+Если бек стали использовать с heroku.com, то в api/index.js ничего менять не нужно.
+
 1) Клонируем репозиторий
 2) Устнавливаем пакеты `npm i` или `yarn`
 3) Запускаем проет: `npm start` или `yarn start` 
 3) Используя ngrok-подобное решение создаем туннель.
 4) Добавляем полученный url в "URL для разработки" в настройках приложения для мобильной версии
+
+Telegram: [https://t.me/eduardpawlow]
 
 # Create VK Mini App [![npm][npm]][npm-url] [![deps][deps]][deps-url]
 
