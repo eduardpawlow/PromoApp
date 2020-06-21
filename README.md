@@ -4,6 +4,31 @@
 
 https://github.com/eduardpawlow/PromoAppBack
 
+Бэк часть развернута на heroku.com
+Адрес админ панели: https://promoappback.herokuapp.com/admin/ Логин/пароль: root
+
+Для создания промокода нужно сначала добавить магазин. Координаты можно получить здесь: https://snipp.ru/tools/address-coord
+Далее создать Promocode Template к данному магазину.
+
+Локальное развертывание:
+1) Развернуть Django проект локально. (Развертывание показано для Windows)
+2) Клонируем репозиторий.
+3) Создаем venv: `python -m venv venv`
+4) Активируем его: `venv\Scripts\activate.bat`
+5) Устанавливаем зависимости: `pip install -r requirements.txt`
+6) Делаем миграции: `python manage.py makemigrations` `python manage.py migrate`
+7) \Опционально\ Загружаем шаблонные данные: `python manage.py loaddata fixt.json`
+8) Запускаем локальный сервер разработки: `python manage.py runserver localhost:80` По умолчанию используется 8000 порт.
+9) С помощью ngrok-подобных решений создаем туннель.
+10) Добавляем сформированный url в файл  api/imdex.js на части фронта в констанут hostname
+
+# FRONTEND
+1) Клонируем репозиторий
+2) Устнавливаем пакеты `npm i` или `yarn`
+3) Запускаем проет: `npm start` или `yarn start` 
+3) Используя ngrok-подобное решение создаем туннель.
+4) Добавляем полученный url в "URL для разработки" в настройках приложения для мобильной версии
+
 # Create VK Mini App [![npm][npm]][npm-url] [![deps][deps]][deps-url]
 
 ## How to install
